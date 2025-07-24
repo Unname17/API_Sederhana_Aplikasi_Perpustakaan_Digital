@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loans', function (Blueprint $table) {
+        Schema::create('returns', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('user_id')->constrained('users')->cascadeOnDelete();
-            $table->date('loan_date');
-            $table->string('status');
+            $table->foreignUlid('loan_id')->constrained('loans')->cascadeOnDelete(); // 1 item hanya bisa dikembalikan sekali
+            $table->date('return_date');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loans');
+        Schema::dropIfExists('returns');
     }
 };

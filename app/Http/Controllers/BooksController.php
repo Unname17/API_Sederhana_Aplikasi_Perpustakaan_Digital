@@ -91,4 +91,12 @@ class BooksController extends Controller
             return response()->json(['message' => 'Buku tidak ditemukan.'], 404);
         }
     }
+            public function count()
+    {
+        $count = \App\Models\Books::count();
+
+        return response()->json([
+            'total' => $count
+        ]);
+    }
 }

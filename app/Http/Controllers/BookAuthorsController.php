@@ -12,7 +12,7 @@ class BookAuthorsController extends Controller
     public function index(): JsonResponse
     {
 
-        $dataBookAuthor = BookAuthors::all();
+        $dataBookAuthor = BookAuthors::with(['book', 'author'])->get();
         return response()->json($dataBookAuthor, 200);
     }
     // Menampilkan user berdasarkan ID
